@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.model.Article;
 import com.example.service.ArticleService;
-import com.example.web.dto.UserRegistrationDto;
 
 
 @Controller
@@ -43,7 +41,7 @@ public class ArticleController {
         
     }
     
-    @GetMapping("/edit/{articleId}/")
+  /*  @GetMapping("/edit/{articleId}/")
     public String showEditForm(@PathVariable(name = "articleId") Long articleId,Model model) {
         Article article = null;
         try {
@@ -57,7 +55,7 @@ public class ArticleController {
     @PutMapping("/update")
     public Article updateArticle(@RequestBody Article article) {
         return articleService.updateArticle(article);
-    }
+    }*/
 
     @GetMapping("/getall")
     public String getAllArticles(Model model) {
@@ -73,7 +71,50 @@ public class ArticleController {
     @GetMapping("/delete/{articleId}")
     public String deleteEmployee(@PathVariable(name = "articleId") Long articleId) {
     	articleService.deleteArticle(articleId);
-    	return "ListeArticles";
+    	return "redirect:/article/getall";
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        Article article = articleService.getArticle(id);
+        model.addAttribute("article", article);
+        return "ModifierArticle";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateUser(@PathVariable("id") long id,  Article article, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+        	article.setId(id);
+            return "ModifierArticle";
+        }
+        articleService.updateArticle(article);
+        return "redirect:/article/getall";
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 }

@@ -20,12 +20,9 @@ public class Article {
 	@Column(name = "libelle")
 	private String libelle;
 	@Column(name = "prix")
-	private String prix;
+	private Double prix;
 	@Column(name = "qte_stock")
-	private String qte_stock;
-	
-
-	
+	private Long qte_stock;
 	public Article() {
 		super();
 	}
@@ -41,24 +38,28 @@ public class Article {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	public String getPrix() {
+	public Double getPrix() {
 		return prix;
 	}
-	public void setPrix(String prix) {
+	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
-	public String getQte_stock() {
+	public Long getQte_stock() {
 		return qte_stock;
 	}
-	public void setQte_stock(String qte_stock) {
+	public void setQte_stock(Long qte_stock) {
 		this.qte_stock = qte_stock;
 	}
-	public Article(Long id, String libelle, String prix, String qte_stock) {
+	public Article(Long id, String libelle, Double prix, Long qte_stock) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.qte_stock = qte_stock;
 	}
+	
+
+	
+
 
 }
