@@ -1,8 +1,14 @@
 package com.example.service;
 
+import java.util.List;
+
 import com.example.model.Article;
-import com.example.web.dto.AjoutArticleDto;
+
 
 public interface ArticleService {
-	Article save(AjoutArticleDto ajoutArticleDto);
+    Article saveArticle(Article article);
+    Article updateArticle(Article article);
+    List<Article> getAllArticles();
+    Article getArticle(Long articleId);
+    void deleteArticle(Long articleId);
 }

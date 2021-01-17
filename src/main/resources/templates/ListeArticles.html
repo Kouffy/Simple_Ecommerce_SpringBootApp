@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>liste</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body>
+		<div th:switch="${articles}">
+    	<h2 th:case="null">No Articles yet!</h2>
+        <div th:case="*">
+            <h2>Les Articles</h2>
+            <table  border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Libelle</th>
+                        <th>Prix</th>
+                        <th>QteStock</th>
+						<th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="article : ${articles}">
+                    <td th:text="${article.id}"></td>
+                    <td th:text="${article.libelle}"></td>
+                     <td th:text="${article.prix}"></td>
+                    <td th:text="${article.qte_stock}"></td>
+                    <td><a th:href="@{/article/edit/{articleId}(articleId=${article.id})}">Edit</a></td>
+                    <td><a th:href="@{/article/delete/{articleId}(articleId=${article.id})}">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>      
+    <p><a href="save">Ajouter un nouveau Article</a></p>
+</div>
+</body>
+</html>

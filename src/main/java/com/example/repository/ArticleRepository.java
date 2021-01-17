@@ -1,11 +1,11 @@
 package com.example.repository;
 
-import org.springframework.stereotype.Repository;
+
+import org.springframework.data.repository.CrudRepository;
 
 import com.example.model.Article;
 
 
-@Repository
-public interface ArticleRepository {
-	Article findById(long id);
+public interface ArticleRepository extends CrudRepository <Article,Long>{
+	
 }

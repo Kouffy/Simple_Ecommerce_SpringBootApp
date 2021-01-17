@@ -1,12 +1,15 @@
 package com.example.web;
 
+import javax.mail.MessagingException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import com.example.service.EmailService;
 import com.example.service.UserService;
 import com.example.web.dto.UserRegistrationDto;
 
@@ -14,7 +17,8 @@ import com.example.web.dto.UserRegistrationDto;
 @RequestMapping("/registration")
 public class UserRegistrationController {
 private UserService userService;
-
+@Autowired
+private EmailService emailService;
 public UserRegistrationController(UserService userService) {
 	super();
 	this.userService = userService;
@@ -25,6 +29,11 @@ public UserRegistrationController(UserService userService) {
 public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto )
 {
 	userService.save(registrationDto);
+    try {
+        emailService.sendMail(registrationDto.getEmail(), "Confirmation de l'inscription", "Bonjour Voici votre mot de passe : " + registrationDto.getPassword());
+    } catch (MessagingException e) {
+        e.printStackTrace();
+    }
 	return "redirect:/registration?success";
 	
 }
