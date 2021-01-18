@@ -3,7 +3,6 @@ package com.example.service;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,8 +10,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.example.model.Role;
 import com.example.model.User;
 import com.example.repository.UserRepository;
@@ -37,8 +34,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
-		User user = new User(registrationDto.getFirstname(), registrationDto.getLastname(), registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
-		
+		User user = new User(registrationDto.getFirstname(), registrationDto.getLastname(), registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()),registrationDto.getTel(),registrationDto.getVille(), Arrays.asList(new Role("ROLE_USER")));
 		return userRepository.save(user);
 	}
 

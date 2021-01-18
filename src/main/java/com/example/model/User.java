@@ -32,21 +32,39 @@ public class User {
 	@Column(name = "password")
 	private String password; 
 	
+	@Column(name = "tel")
+	private String tel;
+	@Column(name = "ville")
+	private String ville;
+	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
 	inverseJoinColumns = @JoinColumn(name ="role_id", referencedColumnName = "id"))
 	private Collection<Role> Roles;
 
-	public User() {
-		
-	}
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+
+	public User(String firstName, String lastName, String email, String password, String tel, String ville,
+			Collection<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.tel = tel;
+		this.ville = ville;
 		Roles = roles;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getVille() {
+		return ville;
+	}
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 	public Long getId() {
 		return id;
@@ -83,6 +101,9 @@ public class User {
 	}
 	public void setRoles(Collection<Role> roles) {
 		Roles = roles;
+	}
+	public User() {
+		super();
 	}
 	
 	

@@ -1,6 +1,9 @@
 package com.example.web;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +13,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.example.model.Article;
 import com.example.service.ArticleService;
 
@@ -22,6 +26,9 @@ import com.example.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	
+	Map<Long, Article> artStores = new HashMap<Long, Article>();
+	
 	@GetMapping(path = "/hello")
     public String getMessage() {
         return "Hello boot";
@@ -57,12 +64,21 @@ public class ArticleController {
         return articleService.updateArticle(article);
     }*/
 
+    
     @GetMapping("/getall")
     public String getAllArticles(Model model) {
     	model.addAttribute("articles" ,articleService.getAllArticles());
         return "ListeArticles";
     }
+    
 
+    @RequestMapping(value = "/apiall", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+	public List <Article> getResource() {
+    	List <Article> a = articleService.getAllArticles();
+	return a;
+    }
+    
     @GetMapping("/getone/{articleId}")
     public Article getEmployee(@PathVariable(name = "articleId") Long articleId) {
         return articleService.getArticle(articleId);

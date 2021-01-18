@@ -34,6 +34,14 @@
 				<label class="control-label" for="password">Password</label>
 				<input id="password" class="form-control" type="password" th:field="*{password}">
 			</div>
+				<div class="form-group">
+				<label class="control-label" for="tel">Telephone mobile</label>
+				<input id="tel" class="form-control" type="text" th:field="*{tel}">
+			</div>
+				<div class="form-group">
+				<label class="control-label" for="ville">Ville de residance</label>
+				<input id="ville" class="form-control" type="text" th:field="*{ville}">
+			</div>
 			<div class="form-group">
 			<button type="submit" class="btn btn-success">Register</button>
 			<span> Already registered? <a href="/" th:href="@{/login}">Login here </a></span>

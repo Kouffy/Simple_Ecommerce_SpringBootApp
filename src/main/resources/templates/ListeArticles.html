@@ -4,38 +4,60 @@
 <meta charset="UTF-8">
 <title>liste</title>
 <!-- Latest compiled and minified CSS -->
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="/js/jqueryScript.js"></script>
+	 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+	integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+	crossorigin="anonymous"></script>
 </head>
 <body>
-		<div th:switch="${articles}" class="container">
-    	<h2 th:case="null">No Articles yet!</h2>
-        <div th:case="*">
-            <h2>Les Articles</h2>
-            <table  border="1"  class="table table-bordered table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Libelle</th>
-                        <th>Prix</th>
-                        <th>QteStock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <tr th:each="article : ${articles}">
-                    <td th:text="${article.id}"></td>
-                    <td th:text="${article.libelle}"></td>
-                     <td th:text="${article.prix}"></td>
-                    <td th:text="${article.qte_stock}"></td>
-                    <td><a th:href="@{/article/edit/{articleId}(articleId=${article.id})}" class="btn btn-success">Edit</a></td>
-                    <td><a th:href="@{/article/delete/{articleId}(articleId=${article.id})}" class="btn btn-danger">Delete</a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>      
-    <p><a href="save" class="btn btn-secondary">Ajouter un nouveau Article</a></p>
-</div>
+
+	<div th:switch="${articles}" class="container">
+		<h2 th:case="null">No Articles yet!</h2>
+		<div th:case="*">
+			<h2>Les Articles</h2>
+			<input class="form-control" id="inputFilter" type="text" placeholder="Search.." />
+			<table border="1"
+				id="articleTable" class="table table-bordered table-hover table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Libelle</th>
+						<th>Prix</th>
+						<th>QteStock</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--  <tr th:each="article : ${articles}">
+						<td th:text="${article.id}"></td>
+						<td th:text="${article.libelle}"></td>
+						<td th:text="${article.prix}"></td>
+						<td th:text="${article.qte_stock}"></td>
+						<td><a
+							th:href="@{/article/edit/{articleId}(articleId=${article.id})}"
+							class="btn btn-success">Edit</a></td>
+						<td><a
+							th:href="@{/article/delete/{articleId}(articleId=${article.id})}"
+							class="btn btn-danger">Delete</a></td>
+					</tr>-->
+				</tbody>
+			</table>
+		</div>
+		<p>
+			<a href="save" class="btn btn-secondary">Ajouter un nouveau
+				Article</a>
+		</p>
+	</div>
+
 </body>
 </html>

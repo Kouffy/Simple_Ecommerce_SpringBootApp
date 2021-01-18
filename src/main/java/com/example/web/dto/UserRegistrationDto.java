@@ -1,10 +1,26 @@
 package com.example.web.dto;
 
+
 public class UserRegistrationDto {
 	private String firstname;
 	private String lastname;
 	private String email;
 	private String password;
+	private String tel;
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getVille() {
+		return ville;
+	}
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	private String ville;
+	
 	public String getFirstname() {
 		return firstname;
 	}
@@ -29,15 +45,19 @@ public class UserRegistrationDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UserRegistrationDto(String firstname, String lastname, String email, String password) {
+	public UserRegistrationDto(String firstname, String lastname, String email, String password, String tel,
+			String ville) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
 		this.password = password;
+		this.tel = tel;
+		this.ville = ville;
 	}
 	public UserRegistrationDto() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
+
 	
 }
