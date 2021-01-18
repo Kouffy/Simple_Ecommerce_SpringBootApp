@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Votre Profile</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+	integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<form th:action="@{/profile/edit/{email}(email=${user.email})}" method="get"
+					th:object="${user}">
+					<!-- success message -->
+					<div th:if="${param.success}">
+						<div class="alert alert-info">Ajouté avec succès</div>
+					</div>
+					<h1>Votre Profile</h1>
+
+					<div class="form-group">
+						<label class="control-label" for="firstName">Nom</label> <input
+							class="form-control" th:value="${user.firstName}" disabled />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="lastName">Prenom</label> <input
+							class="form-control" th:value="${user.lastName}" disabled />
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="email">Email</label> <input
+							class="form-control" th:value="${user.email}" disabled />
+					</div>
+					<div class="form-group">
+						<a href="/"
+							th:href="@{/profile/monprofile}"
+							class="btn btn-secondary">Retour </a>
+						<span><button type="submit" class="btn btn-success">Modifier votre profile</button> </span>
+					</div>
+				</form>
+			</div>
+
+
+		</div>
+
+	</div>
+</body>
+</html>

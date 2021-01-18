@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.model.Role;
 import com.example.model.User;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
+
 	
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
@@ -54,4 +56,12 @@ public class UserServiceImpl implements UserService{
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
 		return roles.stream().map(role-> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
+
+
+	@Override
+	public User findbymail(String username) {
+		User user = userRepository.findByEmail(username);
+		return user;
+	}
+	
 }

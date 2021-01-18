@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Modifier votre profile</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+</head>
+<body>
+		<div class = "container">
+		<div class="row">
+			<div class ="col-md-6 col-md-offset-3">
+			
+			<!-- success message -->
+			<div th:if="${param.success}">
+					<div class="alert alert-info">Ajouté avec succès</div>
+			</div>
+			<h1> Modifier votre profile</h1>
+			<form th:action="@{/article/update/{id}(id=${user.id})}" method="post" th:object="${user}">
+						<div class="form-group">
+				<label class="control-label" for="firstName" >Nom</label>
+				<input id="firstname" class="form-control" th:field="*{firstName}" >
+			</div>
+						<div class="form-group">
+				<label class="control-label" for="lastName">Prenom</label>
+				<input id="lastName" class="form-control" th:field="*{lastName}">
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="email">Email</label>
+				<input id="email" class="form-control" th:field="*{email}">
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="password">Ancien Mot de passe</label>
+				<input id="password" class="form-control" th:field="*{password}">
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="qte-stock">Nouveau mot de passe</label>
+				<input id="password2" class="form-control" th:field="*{password}">
+			</div>
+						<div class="form-group">
+				<label class="control-label" for="qte-stock">Confirmation du nouveau mot de passe</label>
+				<input id="password" class="form-control" th:field="*{password}">
+			</div>
+			<div class="form-group">
+			<button type="submit" class="btn btn-success">Modifier</button>
+			<span> <a href="/" th:href="@{/profile/monprofile}" class="btn btn-secondary">retourner vers la liste des articles </a></span>
+			</div>
+			
+			</form>
+			
+			
+			
+			
+			
+			
+			</div>
+		
+		
+		</div>
+		
+		</div>
+</body>
+</html>

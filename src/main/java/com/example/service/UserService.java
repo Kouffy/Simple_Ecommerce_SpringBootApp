@@ -7,5 +7,6 @@ import com.example.web.dto.UserRegistrationDto;
 
 public interface UserService extends UserDetailsService {
 	User save(UserRegistrationDto registrationDto);
+	public User findbymail(String username);
 	
 }

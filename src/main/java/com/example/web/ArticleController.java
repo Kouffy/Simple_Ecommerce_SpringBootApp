@@ -79,11 +79,6 @@ public class ArticleController {
     
     
     
-    
-    
-    
-    
-    
     @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         Article article = articleService.getArticle(id);
