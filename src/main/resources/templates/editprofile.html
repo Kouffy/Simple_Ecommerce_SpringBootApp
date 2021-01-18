@@ -17,7 +17,7 @@
 					<div class="alert alert-info">Ajouté avec succès</div>
 			</div>
 			<h1> Modifier votre profile</h1>
-			<form th:action="@{/article/update/{id}(id=${user.id})}" method="post" th:object="${user}">
+			<form th:action="@{/profile/update}" method="post" th:object="${user}">
 						<div class="form-group">
 				<label class="control-label" for="firstName" >Nom</label>
 				<input id="firstname" class="form-control" th:field="*{firstName}" >
@@ -32,15 +32,16 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="password">Ancien Mot de passe</label>
-				<input id="password" class="form-control" th:field="*{password}">
+				<input type="hidden" th:field="*{password}"/>
+				<input id="password" class="form-control" th:name="oldpass">
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="qte-stock">Nouveau mot de passe</label>
-				<input id="password2" class="form-control" th:field="*{password}">
+				<input id="password2" class="form-control" th:name="newpass">
 			</div>
 						<div class="form-group">
 				<label class="control-label" for="qte-stock">Confirmation du nouveau mot de passe</label>
-				<input id="password" class="form-control" th:field="*{password}">
+				<input id="password3" class="form-control" >
 			</div>
 			<div class="form-group">
 			<button type="submit" class="btn btn-success">Modifier</button>
