@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="/js/verifqte.js"></script>
 </head>
 <body>
-	<form th:action="@{/addtocart}" method="post" >
+	<form id="myForm" onsubmit="return validateForm()" th:action="@{/addtocart}" method="post" >
 	 <table  border="1">
                 <thead>
                     <tr>
