@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public User save(UserRegistrationDto registrationDto) {
-		User user = new User(registrationDto.getFirstname(), registrationDto.getLastname(), registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()),registrationDto.getTel(),registrationDto.getVille(), Arrays.asList(new Role("ROLE_USER")));
+		User user = new User(registrationDto.getFirstname(), registrationDto.getLastname(), registrationDto.getEmail(),registrationDto.getLogin(), passwordEncoder.encode(registrationDto.getPassword()),registrationDto.getTel(),registrationDto.getVille(), Arrays.asList(new Role("ROLE_USER")));
 		return userRepository.save(user);
 	}
 
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService{
 		{
 			throw new UsernameNotFoundException("Inavalid Username or password");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),mapRolesToAuthorities(user.getRoles())); //roles
+		return new org.springframework.security.core.userdetails.User(user.getLogin(),user.getPassword(),mapRolesToAuthorities(user.getRoles())); //roles
 	} 
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){

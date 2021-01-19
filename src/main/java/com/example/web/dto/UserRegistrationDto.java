@@ -5,6 +5,13 @@ public class UserRegistrationDto {
 	private String firstname;
 	private String lastname;
 	private String email;
+	private String login;
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
 	private String password;
 	private String tel;
 	public String getTel() {
@@ -45,12 +52,13 @@ public class UserRegistrationDto {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public UserRegistrationDto(String firstname, String lastname, String email, String password, String tel,
+	public UserRegistrationDto(String firstname, String lastname, String email, String login, String password, String tel,
 			String ville) {
 		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
+		this.login = login;
 		this.password = password;
 		this.tel = tel;
 		this.ville = ville;

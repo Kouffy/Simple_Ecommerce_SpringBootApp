@@ -1,7 +1,7 @@
 package com.example.web;
 
 import javax.mail.MessagingException;
-
+import com.example.PasswordGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +28,7 @@ public UserRegistrationController(UserService userService) {
 @PostMapping
 public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto )
 {
+	registrationDto.setPassword(PasswordGenerator.generateStrongPassword());
 	userService.save(registrationDto);
     try {
         emailService.sendMail(registrationDto.getEmail(), "Confirmation de l'inscription", "Bonjour Voici votre mot de passe : " + registrationDto.getPassword());

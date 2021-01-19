@@ -24,7 +24,7 @@ public class Panier {
     private User user;
     
 	@Column(name = "qte_cmd")
-	private String qte_cmd;
+	private Long qte_cmd;
 
 	
 	public Long getId() {
@@ -34,11 +34,33 @@ public class Panier {
 		this.id = id;
 	}
 
-	public String getQte_cmd() {
+	public Long getQte_cmd() {
 		return qte_cmd;
 	}
-	public void setQte_cmd(String qte_cmd) {
+	
+	public Article getArticle() {
+		return article;
+	}
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public void setQte_cmd(Long qte_cmd) {
 		this.qte_cmd = qte_cmd;
+	}
+	public Panier(Article article, User user, Long qte_cmd) {
+		super();
+		this.article = article;
+		this.user = user;
+		this.qte_cmd = qte_cmd;
+	}
+	public Panier() {
+		super();
 	}
 
 }

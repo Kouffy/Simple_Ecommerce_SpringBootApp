@@ -29,26 +29,34 @@ public class User {
 	private String lastName;
 	@Column(name = "email")
 	private String email;
+	@Column(name = "login")
+	private String login;
 	@Column(name = "password")
 	private String password; 
-	
 	@Column(name = "tel")
 	private String tel;
 	@Column(name = "ville")
 	private String ville;
 	
+	public String getLogin() {
+		return login;
+	}
+	public void setLogin(String login) {
+		this.login = login;
+	}
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), 
 	inverseJoinColumns = @JoinColumn(name ="role_id", referencedColumnName = "id"))
 	private Collection<Role> Roles;
 
 
-	public User(String firstName, String lastName, String email, String password, String tel, String ville,
+	public User(String firstName, String lastName, String email, String login,String password, String tel, String ville,
 			Collection<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.login = login;
 		this.password = password;
 		this.tel = tel;
 		this.ville = ville;

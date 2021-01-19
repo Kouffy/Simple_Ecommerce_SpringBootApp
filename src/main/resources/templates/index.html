@@ -1,10 +1,59 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>liste</title>
+<!-- Latest compiled and minified CSS -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script src="/js/jqueryScript2.js"></script>
+	 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+	integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+	integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+	crossorigin="anonymous"></script>
 </head>
 <body>
-HELLO <span sec:authentication="principal.username"> User</span>
+		<div th:switch="${#lists.isEmpty(articles)}" class="container">
+    	<h2 th:case="true">No Articles yet!<span sec:authentication="principal.username"> User </span></h2>
+        <div th:case="*">
+        <br>
+            <h2>Les Articles  <span sec:authentication="principal.username"> User</span></h2>
+             <hr>
+             <input class="form-control" id="inputFilter" type="text" placeholder="Search.." />
+            <br>
+            <table id="articleTable" border="1" class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Libelle</th>
+                        <th>Prix</th>
+                        <th>QteStock</th>
+					
+                    </tr>
+                </thead>
+                <tbody>
+    <!--             <tr th:each="article : ${articles}">
+                    <td th:text="${article.id}"></td>
+                    <td th:text="${article.libelle}"></td>
+                     <td th:text="${article.prix}"></td>
+                    <td th:text="${article.qte_stock}"></td>
+                    <td><a th:href="@{'/' + ${article.id}}"> a link</a></td>
+               		
+                </tr>--> 
+            </tbody>
+        </table>
+       
+    </div>      
+   
+</div>
 </body>
 </html>

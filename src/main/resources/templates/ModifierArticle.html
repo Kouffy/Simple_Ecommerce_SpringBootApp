@@ -7,6 +7,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
 </head>
+<script src="/js/validationModArt.js"></script>
 <body>
 		<div class = "container">
 		<div class="row">
@@ -17,7 +18,7 @@
 					<div class="alert alert-info">Ajouté avec succès</div>
 			</div>
 			<h1> Modifier un article</h1>
-			<form th:action="@{/article/update/{id}(id=${article.id})}" method="post" th:object="${article}">
+			<form id="myForm" onsubmit="return validateForm()" th:action="@{/article/update/{id}(id=${article.id})}" method="post" th:object="${article}">
 						<div class="form-group">
 				<label class="control-label" for="id" >Id</label>
 				<input id="firstname" class="form-control" th:field="*{id}"  disabled>

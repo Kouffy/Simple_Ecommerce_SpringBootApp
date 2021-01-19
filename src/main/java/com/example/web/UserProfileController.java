@@ -46,7 +46,10 @@ public class UserProfileController {
 			userfromdb.setFirstName(user.getFirstName());
 			userfromdb.setEmail(user.getEmail());
 			userfromdb.setLastName(user.getLastName());
+			userfromdb.setLogin(user.getLogin());
 			userfromdb.setPassword(passwordEncoder.encode(newpass));
+			userfromdb.setVille(user.getVille());
+			userfromdb.setTel(user.getTel());
 			userService.updateUser(userfromdb);
 			try {
 				emailService.sendMail("mohamedelmouktafi@gmail.com",

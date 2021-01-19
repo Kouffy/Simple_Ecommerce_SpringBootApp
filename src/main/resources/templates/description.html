@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:action="@{/addtocart}" method="post" >
+	 <table  border="1">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Libelle</th>
+                        <th>Prix</th>
+                        <th>QteStock</th>
+                        <th>Entrez la quantite</th>
+                        <th>Ajouter au panier</th>
+					
+                    </tr>
+                </thead>
+              
+                <tbody>
+                <tr>
+                    <td th:text="${article.id}"></td>
+                    <td th:text="${article.libelle}"></td>
+                     <td th:text="${article.prix}"></td>
+                    <td th:text="${article.qte_stock}"></td>
+                    <td> <input type="text" placeholder="Entrez la quantité" id="qte" name="qte" > </td>
+               		<td style="display:none"><input type="hidden" th:value="${article.id}" id="id" name="id"></td>
+               		<td> <button type="submit">Ajouter au panier</button></td>
+                </tr>
+            </tbody>
+             
+        </table>
+        </form>
+</body>
+</html>
