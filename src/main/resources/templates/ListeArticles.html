@@ -17,10 +17,16 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	  <script src="/js/jqueryScript.js"></script>
 	  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-	
+
 </head>
 <body>
 <div layout:fragment="content" >
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+		var myval = /*[[${checker}]]*/ "Test";
+		if(myval != 0)  toastr.error('ce produit exist dans un panier') ;
+		/*]]>*/
+	</script>
 	<div th:switch="${articles}" class="container">
 		<h2 th:case="null">No Articles yet!</h2>
 		<div th:case="*">
@@ -52,10 +58,5 @@
 	</div>
 </div>
 </body>
-<script th:inline="javascript">
-	/*<![CDATA[*/
-	var myval = /*[[${checker}]]*/ "Test";
-	if(myval != 0)  toastr.error('ce produit exist dans un panier') ;
-	/*]]>*/
-</script>
+
 </html>
