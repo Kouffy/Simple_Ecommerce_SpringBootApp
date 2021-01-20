@@ -7,7 +7,7 @@ $(document).ready(function() {
 		success: function(result){
 			$.each(result, function(i, article){
 				
-				var articleRow = '<tr>' +
+				var articleRow = '<tr>'+'<td> <img width="100" height="100" src="https://images.frandroid.com/wp-content/uploads/2019/08/iphone-11-pro-2019-frandroid.png"/></td>' +
 									'<td>' + article.id + '</td>' +
 									'<td>' + article.libelle + '</td>' +
 									'<td>' + article.prix + '</td>' +

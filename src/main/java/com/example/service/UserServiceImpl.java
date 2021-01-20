@@ -14,6 +14,7 @@ import com.example.model.Role;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.web.dto.UserRegistrationDto;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -41,12 +42,22 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByEmail(username);
+		User user = new User();
+		List<User> users = userRepository.findAll();
+		for (User use : users) {
+			
+			if(use.getLogin().equals(username))
+			{
+				
+				user=use;
+				break;
+			}
+		}
 		if(user==null)
 		{
 			throw new UsernameNotFoundException("Inavalid Username or password");
 		}
-		return new org.springframework.security.core.userdetails.User(user.getLogin(),user.getPassword(),mapRolesToAuthorities(user.getRoles())); //roles
+		return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),mapRolesToAuthorities(user.getRoles())); //roles
 	} 
 
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){

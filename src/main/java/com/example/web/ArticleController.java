@@ -1,5 +1,6 @@
 package com.example.web;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,16 +10,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.FileUploadUtil;
 import com.example.model.Article;
+import com.example.model.Panier;
 import com.example.service.ArticleService;
+import com.example.service.PanierService;
 
 
 @Controller
@@ -26,6 +31,8 @@ import com.example.service.ArticleService;
 public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
+	@Autowired
+	private PanierService panierService;
 	
 	Map<Long, Article> artStores = new HashMap<Long, Article>();
 	
@@ -39,38 +46,39 @@ public class ArticleController {
 		return "ajouterArticle";
 	}
     @PostMapping("/saveArt")
-    public String saveArticle(@Validated Article article,BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "save";
-        }
-        articleService.saveArticle(article);
-        return "redirect:/article/getall";
+    public String saveArticle(Article article, @RequestParam("file") MultipartFile multipartFile)throws IOException {
+       
+         
+        String fileName = multipartFile.getOriginalFilename();
+        System.out.println(fileName);
+        article.setImage(fileName);
         
+articleService.saveArticle(article);
+    
+        String uploadDir = "resources/static/article-photos/";
+ 
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+    
+        return "redirect:/article/getall";
     }
     
-  /*  @GetMapping("/edit/{articleId}/")
-    public String showEditForm(@PathVariable(name = "articleId") Long articleId,Model model) {
-        Article article = null;
-        try {
-            article = articleService.getArticle(articleId);
-        } catch (Exception ex) {
-            model.addAttribute("errorMessage", "Contact not found");
-        }
-        model.addAttribute("article", article);
-    	return "ModifierArticle";
-    }
-    @PutMapping("/update")
-    public Article updateArticle(@RequestBody Article article) {
-        return articleService.updateArticle(article);
-    }*/
 
     
     @GetMapping("/getall")
     public String getAllArticles(Model model) {
+    	int checker=0;
     	model.addAttribute("articles" ,articleService.getAllArticles());
+    	model.addAttribute("checker",checker);
+    	System.out.print("get all"+ checker);
         return "ListeArticles";
     }
-    
+    @GetMapping("/getall/{checker}")
+    public String getAllArticles(Model model,@PathVariable(name = "checker") Long checker) {
+    	
+    	model.addAttribute("articles" ,articleService.getAllArticles());
+        model.addAttribute("checker",checker);
+        return "ListeArticles";
+    }
 
     @RequestMapping(value = "/apiall", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
@@ -85,9 +93,25 @@ public class ArticleController {
     }
 
     @GetMapping("/delete/{articleId}")
-    public String deleteEmployee(@PathVariable(name = "articleId") Long articleId) {
-    	articleService.deleteArticle(articleId);
-    	return "redirect:/article/getall";
+    public String deleteEmployee(Model model,@PathVariable(name = "articleId") Long articleId) {
+        int checke=0;
+    	if(panierService.getAllPanier()!=null)
+    	{
+    	List<Panier> paniers =panierService.getAllPanier();
+    	for (Panier panier : paniers) {
+			if(panier.getArticle().getId()==articleId)
+			{
+				checke++;
+			}
+		}  
+    	if(checke==0)
+    	{
+        articleService.deleteArticle(articleId);
+    	 model.addAttribute("checker",checke);
+    	}
+        }
+     
+    	return "redirect:/article/getall/"+checke;
     }
     
     
@@ -108,6 +132,7 @@ public class ArticleController {
         	article.setId(id);
             return "ModifierArticle";
         }
+        article.setImage("kjg");
         articleService.updateArticle(article);
         return "redirect:/article/getall";
     }

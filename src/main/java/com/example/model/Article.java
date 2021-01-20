@@ -23,6 +23,8 @@ public class Article {
 	private Double prix;
 	@Column(name = "qte_stock")
 	private Long qte_stock;
+	@Column(name = "image")
+	private String image;
 	public Article() {
 		super();
 	}
@@ -50,12 +52,19 @@ public class Article {
 	public void setQte_stock(Long qte_stock) {
 		this.qte_stock = qte_stock;
 	}
-	public Article(Long id, String libelle, Double prix, Long qte_stock) {
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public Article(Long id, String libelle, Double prix, Long qte_stock,String image) {
 		super();
 		this.id = id;
 		this.libelle = libelle;
 		this.prix = prix;
 		this.qte_stock = qte_stock;
+		this.image = image;
 	}
 	
 

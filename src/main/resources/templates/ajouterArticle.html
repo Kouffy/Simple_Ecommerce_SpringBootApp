@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
 <title>Ajouter Article</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
+<script src="/js/validationAjout.js"></script>
+
 </head>
- <script src="/js/validationAjout.js"></script>
+
 <body>
+	<div layout:fragment="content" >
 		<div class = "container">
 		<div class="row">
 			<div class ="col-md-6 col-md-offset-3">
@@ -18,24 +21,29 @@
 					<div class="alert alert-info">Ajouté avec succès</div>
 			</div>
 			<h1> Ajout</h1>
-			<form id="myForm" onsubmit="return validateForm()" th:action="@{/article/saveArt}" method="post" th:object="${article}">
+			<form id="myForm" onsubmit="return validateForm()" th:action="@{/article/saveArt}" method="post" th:object="${article}" enctype="multipart/form-data">
 			<div class="form-group">
 				<label class="control-label" for="firstname">Libelle</label>
 				<input id="firstname" class="form-control" th:field="*{libelle}">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="lastname">Prix</label>
-				<input id="lastname" class="form-control" th:field="*{prix}">
+				<label class="control-label" for="prix">Prix</label>
+				<input id="prix" class="form-control" th:field="*{prix}">
 			</div>
 			<div class="form-group">
-				<label class="control-label" for="email">Qte en Stock</label>
-				<input id="email" class="form-control" th:field="*{qte_stock}">
+				<label class="control-label" for="qte_stock">Qte en Stock</label>
+				<input id="qte_stock" class="form-control" th:field="*{qte_stock}">
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="image">Image</label>	
+			<input type="file" name="file" accept="image/png, image/jpeg" />
 			</div>
 			<div class="form-group">
 			<button type="submit" class="btn btn-success">Ajouter</button>
 			<span> <a href="/" th:href="@{/article/getall}" class="btn btn-secondary">retourner vers la Liste des articles </a></span>
 			</div>
-			
+		
+
 			</form>
 			
 			
@@ -49,5 +57,6 @@
 		</div>
 		
 		</div>
+	</div>
 </body>
 </html>

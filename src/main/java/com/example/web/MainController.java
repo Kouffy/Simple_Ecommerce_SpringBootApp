@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -24,7 +25,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import com.example.model.Article;
 import com.example.model.Panier;
 import com.example.service.ArticleService;
@@ -55,6 +55,12 @@ public class MainController {
 	   @GetMapping("/")
 	    public String homeUser(Model model) {
 	    	model.addAttribute("articles" ,articleService.getAllArticles());
+	    	Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	    	boolean hasUserRole = authentication.getAuthorities().stream()
+	    	          .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+	    	if(hasUserRole)
+	    		return "redirect:/article/getall";
 	        return "index";
 	    }
 	   
@@ -112,7 +118,7 @@ public class MainController {
 	   @GetMapping("/validation")
 	   public String validation(Model model) throws Exception
 	   {
-		   String username="";
+		   String username="";Double total=0.0;
 			Object principal=SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	    	if(principal instanceof UserDetails)
 	    	{
@@ -156,6 +162,7 @@ public class MainController {
 	                    .setCellValue(panier.getArticle().getPrix());
 	            row.createCell(3)
                 .setCellValue(panier.getQte_cmd());
+	            total+=panier.getQte_cmd()*panier.getArticle().getPrix();
 	        }
 	        for(int i = 0; i < columns.length; i++) {
 	            sheet.autoSizeColumn(i);
@@ -166,7 +173,7 @@ public class MainController {
 	        fileOut.close();
 	        workbook.close();
 	        File file =new File("poi-generated-file.xlsx");
-	        emailService.sendMail("soufyan.mamado@gmail.com", "subject", "message", file);
+	        emailService.sendMail(username, "Reçu de paiement", "Voici votre total : "+total, file);
 	        List<Article> art=articleService.getAllArticles();
 	        for (Article article : art) {
 				for (Panier panier : paniers) {

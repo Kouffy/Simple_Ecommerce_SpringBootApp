@@ -3,7 +3,6 @@ package com.example.web;
 import java.util.List;
 
 import javax.mail.MessagingException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,18 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.example.model.Article;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.service.EmailService;
 import com.example.service.UserService;
-import com.example.web.dto.UserRegistrationDto;
 
 @Controller
 @RequestMapping("/profile")
@@ -42,6 +37,7 @@ public class UserProfileController {
 		super();
 		this.userService = userService;
 	}
+	
 	@PostMapping("/update")
 	public String UpdateUserAccount(@ModelAttribute("user") User user,
 			@RequestParam(value = "newpass", required = true) String newpass,
@@ -57,7 +53,7 @@ public class UserProfileController {
 			userfromdb.setTel(user.getTel());
 			userService.updateUser(userfromdb);
 			try {
-				emailService.sendMail("mohamedelmouktafi@gmail.com", "Confirmation de la modification de profile",
+				emailService.sendMail(user.getEmail(), "Confirmation de la modification de profile",
 						"Bonjour Voici votre mot de passe : " + newpass);
 			} catch (MessagingException e) {
 				e.printStackTrace();
@@ -76,7 +72,6 @@ public class UserProfileController {
 			email = principal.toString();
 		}
 		User user = userService.findbymail(email);
-		System.out.println(user.getEmail());
 		model.addAttribute("user", user);
 		return "Profile";
 	}

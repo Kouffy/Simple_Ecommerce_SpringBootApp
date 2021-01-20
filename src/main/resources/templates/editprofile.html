@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Modifier votre profile</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
 	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -15,8 +16,10 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
 	integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
 	crossorigin="anonymous"></script>
+	
 </head>
-  <script src="/js/validationModification.js"></script>
+
+
 <body>
 	<div class="container">
 		<div class="row">
@@ -73,8 +76,7 @@
 					<div class="form-group">
 						<button type="submit" class="btn btn-success">Modifier</button>
 						<span> <a href="/" th:href="@{/profile/monprofile}"
-							class="btn btn-secondary">retourner vers la liste des
-								articles </a></span>
+							class="btn btn-secondary">retourner vers mon profile </a></span>
 					</div>
 
 				</form>
@@ -86,4 +88,5 @@
 
 	</div>
 </body>
+<script src="/js/validationModification.js"></script>
 </html>

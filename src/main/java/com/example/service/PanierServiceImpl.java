@@ -49,6 +49,11 @@ public class PanierServiceImpl implements PanierService {
 			panierRepository.delete(panier);
 		}
 	}
+	@Override
+	public List<Panier> getAllPanier() {
+		
+		return  (List<Panier>) panierRepository.findAll();
+	}
 	
 
 }

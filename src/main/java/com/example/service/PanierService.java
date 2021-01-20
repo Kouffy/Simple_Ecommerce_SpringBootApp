@@ -9,4 +9,5 @@ public interface PanierService {
 	Panier savePanier(Panier panier);
 	List<Panier> getPanierByUser(User user);
 	void deletePanierByUser(User user);
+	List<Panier> getAllPanier();
 }

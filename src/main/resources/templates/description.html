@@ -3,11 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="/js/verifqte.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" rel="stylesheet"/>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+
+    <div class="container">
+        <h2>Ajouter au panier</h2>
+        <hr>
 	<form id="myForm" onsubmit="return validateForm()" th:action="@{/addtocart}" method="post" >
-	 <table  border="1">
+	 <table class="table table-bordered table-hover table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -15,7 +29,7 @@
                         <th>Prix</th>
                         <th>QteStock</th>
                         <th>Entrez la quantite</th>
-                        <th>Ajouter au panier</th>
+          
 					
                     </tr>
                 </thead>
@@ -26,13 +40,15 @@
                     <td th:text="${article.libelle}"></td>
                      <td th:text="${article.prix}"></td>
                     <td th:text="${article.qte_stock}"></td>
-                    <td> <input type="text" placeholder="Entrez la quantité" id="qte" name="qte" > </td>
+                    <td> <input class="form-control" type="text" placeholder="Entrez la quantité" id="qte" name="qte" > </td>
                		<td style="display:none"><input type="hidden" th:value="${article.id}" id="id" name="id"></td>
-               		<td> <button type="submit">Ajouter au panier</button></td>
+               		<td> <button type="submit" class="btn btn-primary">Ajouter au panier</button></td>
                 </tr>
             </tbody>
              
         </table>
         </form>
+    </div>
 </body>
+<script src="/js/verifqte.js"></script>
 </html>

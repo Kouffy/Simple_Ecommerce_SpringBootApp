@@ -1,17 +1,18 @@
+
 $(document).ready(function() {
-	
-	// DO GET
+
 	$.ajax({
 		type : "GET",
 		url : "http://localhost:7777/article/apiall",
 		success: function(result){
 			$.each(result, function(i, article){
-				
-				var articleRow = '<tr>' +
+				var articleRow = '<tr>' +'<td><img width="100" height="100" src="https://images.frandroid.com/wp-content/uploads/2019/08/iphone-11-pro-2019-frandroid.png"/></td>' +
 									'<td>' + article.id + '</td>' +
 									'<td>' + article.libelle + '</td>' +
 									'<td>' + article.prix + '</td>' +
 									'<td>' + article.qte_stock + '</td>' +
+									'<td>' + '<a class="btn btn-primary" href="/article/edit/'+ article.id +'">Modifier</a>' + '</td>' +
+									'<td>' + '<a class="btn btn-danger" href="/article/delete/'+ article.id +'">supprimer</a>' + '</td>' +
 								  '</tr>';
 				
 				$('#articleTable tbody').append(articleRow);
