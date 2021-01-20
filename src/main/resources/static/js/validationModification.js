@@ -19,8 +19,8 @@ function validateForm() {
   $("#error_tel1").remove();
   
 
-  if (frm.firstname.value == "") {
-    $("#firstname").after("<span id='error_fnmae' class='text-danger'> Enter your name </span>");
+  if (frm.firstName.value == "") {
+    $("#firstame").after("<span id='error_fnmae' class='text-danger'> Enter your name </span>");
     return false;
   }
 
@@ -59,11 +59,11 @@ function validateForm() {
   }
  
  
-  if (document.forms['myForm'].password.value == "") {
-    $("#password").after("<span id='error_login' class='text-danger'> Enter your old password </span>");
+  if ( $("#passworda").val() == "") {
+    $("#passworda").after("<span id='error_login' class='text-danger'> Enter your old password </span>");
     return false;
   }
-  if (frm.password.value == "") {
+  if (frm.password2.value == "") {
     $("#password2").after("<span id='error_login' class='text-danger'> Enter your new password </span>");
     return false;
   }
