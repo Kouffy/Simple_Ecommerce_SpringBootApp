@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
 <head>
 <meta charset="UTF-8">
 <title>Modifier votre profile</title>
@@ -21,6 +22,7 @@
 
 
 <body>
+<div layout:fragment="content" >
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -29,7 +31,9 @@
 				<div th:if="${param.success}">
 					<div class="alert alert-info">Ajouté avec succès</div>
 				</div>
+				<br>
 				<h1>Modifier votre profile</h1>
+				<hr>
 				<form id="myForm" onsubmit="return validateForm()"  th:action="@{/profile/update}" method="post"
 					th:object="${user}">
 					<div class="form-group">
@@ -86,6 +90,7 @@
 
 		</div>
 
+	</div>
 	</div>
 </body>
 <script src="/js/validationModification.js"></script>

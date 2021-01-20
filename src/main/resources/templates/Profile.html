@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
 <title>Votre Profile</title>
@@ -18,6 +18,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<div layout:fragment="content" >
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
@@ -27,8 +28,9 @@
 					<div th:if="${param.success}">
 						<div class="alert alert-info">Ajouté avec succès</div>
 					</div>
+					<br>
 					<h1>Votre Profile</h1>
-
+					<hr>
 					<div class="form-group">
 						<label class="control-label" for="firstName">Nom</label> <input
 							class="form-control" th:value="${user.firstName}" disabled />
@@ -61,6 +63,7 @@
 
 		</div>
 
+	</div>
 	</div>
 </body>
 </html>

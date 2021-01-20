@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
+
 <head>
 <meta charset="UTF-8">
 <title>liste</title>
@@ -22,6 +24,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
+<div layout:fragment="content" >
 		<div th:switch="${#lists.isEmpty(articles)}" class="container">
     	<h2 th:case="true">No Articles yet!<span sec:authentication="principal.username"> User </span></h2>
         <div th:case="*">
@@ -48,6 +51,7 @@
        
     </div>      
    
+</div>
 </div>
 </body>
 </html>

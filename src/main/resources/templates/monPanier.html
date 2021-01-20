@@ -1,40 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-
-	<div th:switch="${#lists.isEmpty(paniers)}">
-    	<h2 th:case="true">No Articles yet!<span sec:authentication="principal.username"> User </span></h2>
+<div layout:fragment="content" >
+	<div class="container" th:switch="${#lists.isEmpty(paniers)}">
+    	<h2 th:case="true">Le Panier est vide!</h2>
         <div th:case="*">
-            <h2>Les Articles  <span sec:authentication="principal.username"> User</span></h2>
-             
-            <table  border="1">
-                <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Libelle</th>
-                        <th>Prix</th>
-                        <th>Qte commandé</th>
-					
-                    </tr>
-                </thead>
-                <tbody>
+            <br>
+            <h2>Mon Panier :</h2>
+            <hr>
+            <table id="articleTable" class="table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Libelle</th>
+                    <th>Prix</th>
+                    <th>Qte commandé</th>
+                
+                </tr>
+            </thead>
+            <tbody>
                 <tr th:each="panier : ${paniers}">
                     <td th:text="${panier.article.id}"></td>
                     <td th:text="${panier.article.libelle}"></td>
                      <td th:text="${panier.article.prix}"></td>
                     <td th:text="${panier.qte_cmd}"></td>
                    
-               		
+                       
                 </tr>
             </tbody>
-        </table>
-       <a th:href="@{/validation}">Valider</a>
+    </table>
+ 
+       <a th:href="@{/validation}"  class="btn btn-success">Valider</a>
     </div>      
    
+</div>
 </div>
 </body>
 </html>

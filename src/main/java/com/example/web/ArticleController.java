@@ -106,7 +106,6 @@ articleService.saveArticle(article);
 					if(panier.getArticle().getId()==articleId)
 						checke++;
 				}
-			
 				
 			}
 		}  

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
 <head>
 <meta charset="UTF-8">
 <title>liste</title>
@@ -19,7 +20,7 @@
 	
 </head>
 <body>
-
+<div layout:fragment="content" >
 	<div th:switch="${articles}" class="container">
 		<h2 th:case="null">No Articles yet!</h2>
 		<div th:case="*">
@@ -49,7 +50,7 @@
 				Article</a>
 		</p>
 	</div>
-
+</div>
 </body>
 <script th:inline="javascript">
 	/*<![CDATA[*/

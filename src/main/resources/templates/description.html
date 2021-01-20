@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -16,7 +17,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
+<div layout:fragment="content" >
     <div class="container">
         <h2>Ajouter au panier</h2>
         <hr>
@@ -48,6 +49,7 @@
              
         </table>
         </form>
+    </div>
     </div>
 </body>
 <script src="/js/verifqte.js"></script>
