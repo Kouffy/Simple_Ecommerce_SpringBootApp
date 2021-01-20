@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 @Entity
 @Table(name = "panier")
 public class Panier {
@@ -18,6 +21,7 @@ public class Panier {
 	
     @ManyToOne
     @JoinColumn(name ="id_article")
+    @NotFound(action = NotFoundAction.IGNORE)
     private Article article;
     @ManyToOne
     @JoinColumn(name ="id_client")

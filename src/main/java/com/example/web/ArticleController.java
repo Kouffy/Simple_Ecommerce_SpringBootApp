@@ -99,9 +99,15 @@ articleService.saveArticle(article);
     	{
     	List<Panier> paniers =panierService.getAllPanier();
     	for (Panier panier : paniers) {
-			if(panier.getArticle().getId()==articleId)
+			if(panier != null)
 			{
-				checke++;
+				if(panier.getArticle()!=null)
+				{
+					if(panier.getArticle().getId()==articleId)
+						checke++;
+				}
+			
+				
 			}
 		}  
     	if(checke==0)
@@ -109,8 +115,8 @@ articleService.saveArticle(article);
         articleService.deleteArticle(articleId);
     	 model.addAttribute("checker",checke);
     	}
-        }
-     
+        
+    	}
     	return "redirect:/article/getall/"+checke;
     }
     
