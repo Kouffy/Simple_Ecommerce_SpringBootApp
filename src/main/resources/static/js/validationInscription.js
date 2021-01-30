@@ -6,6 +6,7 @@ function validateForm() {
   $("#error_fnmae").remove();
   $("#error_lname").remove();
   $("#error_email3").remove();
+  $("#email_error").remove();
   $("#email_error2").remove();
   $("#error_login").remove();
   $("#error_fnmae").remove();
